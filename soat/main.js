@@ -1,14 +1,10 @@
 let s = document.querySelector(".s")
 let m = document.querySelector(".m")
 let h = document.querySelector(".h")
+let hours = document.querySelector(".hours")
+let minutes = document.querySelector(".minutes")
 
 
-// console.log(s, m, h);
-
-
-
-
-// console.log(data);
 
 function clock() {
     let data = new Date()
@@ -16,18 +12,41 @@ function clock() {
     let min = data.getMinutes()
     let hour = data.getHours()
 
-    // console.log(sec, min, hour);
 
 
     s.style.transform = `rotate(${sec * 6}deg)`
     m.style.transform = `rotate(${min * 6}deg)`
-    h.style.transform = `rotate(${hour * 12}deg)`
+    h.style.transform = `rotate(${hour * 30}deg)`
+
+
+
     setTimeout(() => {
         clock()
     }, 1000);
+
+    hours.innerHTML = data.getHours() < 10 ? "0" + data.getHours() : data.getHours()
+    minutes.innerHTML = data.getMinutes() < 10 ? "0" + data.getMinutes() : data.getMinutes()
+
+
 
 }
 
 clock()
 
+
+let tabsItem = document.querySelectorAll(".tabsItem")
+
+let tabsContentItem  = document.querySelectorAll(".tabsContentItem ")
+for (let i = 0; i < tabsItem.length; i++) {
+
+
+    tabsItem[i].addEventListener("click", function () {
+        for (k = 0; k < tabsItem.length; k++){
+            tabsContentItem[k].classList.remove('active')
+            tabsItem[k].classList.remove('active')
+        }
+        tabsItem[i].classList.add('active')
+        tabsContentItem[i].classList.add('active')
+    })
+}
 
