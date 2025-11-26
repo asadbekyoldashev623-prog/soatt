@@ -36,12 +36,12 @@ clock()
 
 let tabsItem = document.querySelectorAll(".tabsItem")
 
-let tabsContentItem  = document.querySelectorAll(".tabsContentItem ")
+let tabsContentItem = document.querySelectorAll(".tabsContentItem ")
 for (let i = 0; i < tabsItem.length; i++) {
 
 
     tabsItem[i].addEventListener("click", function () {
-        for (k = 0; k < tabsItem.length; k++){
+        for (k = 0; k < tabsItem.length; k++) {
             tabsContentItem[k].classList.remove('active')
             tabsItem[k].classList.remove('active')
         }
@@ -52,19 +52,26 @@ for (let i = 0; i < tabsItem.length; i++) {
 
 
 let stopwatchBtn = document.querySelector('.stopwatch__btn')
-function sec() {
+let stopwatchSeconds = document.querySelector('.stopwatch__seconds')
+let lampa = document.querySelector('.tabsLink__span')
+
     stopwatchBtn.addEventListener('click', () => {
-       
-if (stopwatchBtn.innerText == 'START') {
-    stopwatchBtn.innerText = 'STOP'
-}
-else if (stopwatchBtn.innerText == 'STOP'){
-    stopwatchBtn.innerText = 'CLEAR'
-}
-else{
-    stopwatchBtn.innerText = "START"
-}
+
         
+        
+        if (stopwatchBtn.innerText == 'START') {
+            stopwatchBtn.innerText = 'STOP'
+            
+            lampa.classList.add("active")
+        }
+        else if (stopwatchBtn.innerText == 'STOP') {
+            stopwatchBtn.innerText = 'CLEAR'
+            lampa.classList.remove('active')
+            lampa.classList.add('active_clear')
+        }
+        else {
+            stopwatchBtn.innerText = "START"
+            lampa.classList.remove('active_clear')
+        }
+
     })
-}
-sec()
