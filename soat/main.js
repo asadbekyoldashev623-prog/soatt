@@ -53,7 +53,36 @@ for (let i = 0; i < tabsItem.length; i++) {
 
 let stopwatchBtn = document.querySelector('.stopwatch__btn')
 let stopwatchSeconds = document.querySelector('.stopwatch__seconds')
+let stopwatchminutes = document.querySelector('.stopwatch__minutes')
+let stopwatchhours= document.querySelector('.stopwatch__hours')
 let lampa = document.querySelector('.tabsLink__span')
+let foo 
+
+function Sec() {
+    stopwatchSeconds.innerHTML++
+    if (stopwatchSeconds.innerHTML > 59) {
+       stopwatchSeconds.innerHTML = 0
+       stopwatchminutes.innerHTML++
+     
+    
+
+    }
+else if (stopwatchminutes.innerHTML > 59) {
+    stopwatchminutes.innerHTML = 0
+    stopwatchhours.innerHTML++
+    
+}
+else if (stopwatchhours.innerHTML > 24) {
+    stopwatchhours.innerHTML = 0
+    
+}
+
+   foo = setTimeout(() => {
+        Sec()
+    }, 1);
+}
+
+
 
     stopwatchBtn.addEventListener('click', () => {
 
@@ -63,15 +92,21 @@ let lampa = document.querySelector('.tabsLink__span')
             stopwatchBtn.innerText = 'STOP'
             
             lampa.classList.add("active")
+            Sec()
+
         }
         else if (stopwatchBtn.innerText == 'STOP') {
             stopwatchBtn.innerText = 'CLEAR'
             lampa.classList.remove('active')
             lampa.classList.add('active_clear')
+            clearInterval(foo)
         }
         else {
             stopwatchBtn.innerText = "START"
             lampa.classList.remove('active_clear')
+            stopwatchSeconds.innerHTML = 0
+            stopwatchminutes.innerHTML = 0
+            stopwatchhours.innerHTML = 0
         }
 
     })
